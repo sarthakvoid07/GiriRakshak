@@ -3,6 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import { getRainfall } from './api/weather';
+
+getRainfall(25.5788, 91.8933).then(result => console.log(result));
 
 function App() {
   const [count, setCount] = useState(0)
