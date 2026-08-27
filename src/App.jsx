@@ -3,10 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import { getZones, getReports } from './firebase/reads';
 
-getZones().then(zones => console.log("ZONES:", zones));
-getReports().then(reports => console.log("REPORTS:", reports));
 
 function App() {
   const [count, setCount] = useState(0)
