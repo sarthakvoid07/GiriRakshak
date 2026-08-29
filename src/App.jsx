@@ -8,6 +8,14 @@ const COLORS = {
   severe: '#C0392B',
 };
 
+function riskFrom(score, rain) {
+  const c = (score || 0) * ((rain || 0) / 100);
+  if (c >= 0.5) return 'severe';
+  if (c >= 0.3) return 'high';
+  if (c >= 0.15) return 'moderate';
+  return 'low';
+}
+
 function App() {
   const [zones, setZones] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +36,7 @@ function App() {
 
       {zones.map(zone => (
         <div key={zone.id} style={{
+          {/* risk calculated live from score × rainfall */}
           border: '1px solid #D5DCE4',
           borderRadius: 8,
           padding: 16,
@@ -36,13 +45,13 @@ function App() {
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <strong>{zone.district || 'Unnamed district'}, {zone.state}</strong>
             <span style={{
-              background: COLORS[zone.riskLevel] || '#999',
+              background: COLORS[riskFrom(zone.riskScore, zone.rainfall3day)] || '#999',
               color: 'white',
               padding: '2px 10px',
               borderRadius: 12,
               fontSize: 13,
             }}>
-              {zone.riskLevel}
+            {riskFrom(zone.riskScore, zone.rainfall3day)}
             </span>
           </div>
           <div style={{ color: '#5A6875', fontSize: 14, marginTop: 6 }}>
