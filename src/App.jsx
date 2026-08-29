@@ -36,7 +36,6 @@ function App() {
 
       {zones.map(zone => (
         <div key={zone.id} style={{
-          {/* risk calculated live from score × rainfall */}
           border: '1px solid #D5DCE4',
           borderRadius: 8,
           padding: 16,
