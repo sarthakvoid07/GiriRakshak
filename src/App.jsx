@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getZones } from './firebase/reads';
 
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from './firebase/config';
+
+updateDoc(doc(db, 'riskZones', 'z_test_01'), {
+  district: 'Aizawl',
+  roadStatus: 'open',
+}).then(() => console.log('patched z_test_01'));
+
 const COLORS = {
   low: '#2E8B57',
   moderate: '#E8B33D',
